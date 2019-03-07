@@ -19,7 +19,7 @@ import os.path
 import variables as V
 # SAMPLING VARIABLES
 #integration time (seconds)
-integration=10
+integration=5
 
 # NAMING VARIABLES
 OPCNAME = "TestOPC"
@@ -51,22 +51,24 @@ def initOPC(ser):
 # Turn fan 
         
 def fanOff(ser):
+        print("Fan off")
          #start the flow chart the flow chart
-        ser.write(bytearray([0x61,0x03]))
+     #   ser.write(bytearray([0x61,0x03]))
         time.sleep(.1)
         ser.write(bytearray([0x61,0x03]))
+        nl = ser.read(2)
+        print(nl)
         time.sleep(.1)
         #fan off
         ser.write(bytearray([0x61,0x02]))
-        #nl = ser.read(2)
-        #print(nl)
-        time.sleep(0.1)
-        #lazer off
-       # ser.write(bytearray([0x61,0x62]))
-       # time.sleep(20)
+        nl = ser.read(2)
+        print(nl)
+        time.sleep(.1)
+     
 # Turn fan and laser on
 def fanOn(ser):
-    
+        print("Fan ON")
+        
         ser.write(bytearray([0x61,0x03]))
         nl = ser.read(2)
         print(nl)
@@ -78,6 +80,9 @@ def fanOn(ser):
 
 #Lazer on   0x07 is SPI byte following 0x03 to turn laser ON.
 def LazOn(ser):
+        print("Lazer On")
+        #ser.write(bytearray([0x61,0x03]))
+        time.sleep(.1)
         ser.write(bytearray([0x61,0x03]))
         nl = ser.read(2)
         print(nl)
@@ -88,6 +93,8 @@ def LazOn(ser):
         time.sleep(.1)
 #Lazer off 0x06 is SPI byte following 0x03 to turn laser off.
 def LazOff(ser):
+        print("Lazer Off")
+        
         ser.write(bytearray([0x61,0x03]))
         nl = ser.read(2)
         print(nl)
@@ -103,18 +110,23 @@ def combine_bytes(LSB, MSB):
  
 
 def getHist(ser):
-        ser.write(bytearray([0x61,0x30]))
+    
+        print("get hist")
+        ser.write(bytearray([0x61,0x30])) #reques the hist data set 
+        time.sleep(0.1)
         nl=ser.read(2)
-        #print(nl)
-        time.sleep(.1)
+        print("Does if have f3 ? ",nl)
+        time.sleep(.1) #delay
         br = bytearray([0x61])
-        for i in range(0,86):
+        print("br",br)
+        for i in range(0,85):
                 br.append(0x30)
-        print(br)
+        print("br=",br,len(br))    
         ser.write(br)
         ans=bytearray(ser.read(1))
+        print("ans=",ans,"len",len(ans))
         ans=bytearray(ser.read(86))
-        print(ans)
+        print("ans=",ans,"len",len(ans))
         data={}
         data['Bin 0'] = combine_bytes(ans[0],ans[1])
         data['Bin 1'] = combine_bytes(ans[2],ans[3])
@@ -145,11 +157,11 @@ def getHist(ser):
         data['FlowRate'] = combine_bytes(ans[54],ans[55])
         data['Temp']=combine_bytes(ans[56],ans[57])
         data['RH'] = combine_bytes(ans[52],ans[53])
-        print(data)
         data['pm1'] = struct.unpack('f',bytes(ans[60:64]))[0]
         data['pm2.5'] = struct.unpack('f',bytes(ans[64:68]))[0]
-        data['pm10'] = struct.unpack('f',bytes(ans[68:73]))[0]
-       # data['Check']= combine_bytes(ans[84],ans[85])
+        data['pm10'] = struct.unpack('f',bytes(ans[68:72]))[0]
+        data['Check']= combine_bytes(ans[84],ans[85])
+      #  print(data)
         return(data)
 	
 # Retrieve data
@@ -204,7 +216,8 @@ if __name__ == "__main__":
         
         ser = serial.Serial(**serial_opts)
         #ser.open()
-	
+     
+     
         print("**************************************************")
         print("DID YOU CHECK THE DATE/TIME ????????")
         print("**************************************************")
@@ -213,18 +226,29 @@ if __name__ == "__main__":
         print("Init:")
         initOPC(ser)
         time.sleep(1)
-
         print("Fan & Lazer Off:")
         fanOff(ser)
         LazOff(ser)
-        time.sleep(1)
+        time.sleep(5)
         print("Fan & Lazer on:")
         fanOn(ser)
-        LazOn(ser)
-        time.sleep(2)
-       # PM data
-        print(getData(ser))
-        #get Hist
-        print(getHist(ser))
+        time.sleep(5)
+       # LazOn(ser)
+       # time.sleep(5)
+       # PM data#
+        for x in range(0,5):
+        #   print(getData(ser))
+            #get Hist
+            LazOn(ser)
+            time.sleep(.1)
+            print(getHist(ser))
+            #ser.close()
+            LazOff(ser)
+            time.sleep(integration)  
+        print("Turning off")   
+        time.sleep(1)                
+        LazOff(ser)  
+        fanOff(ser)  
+        time.sleep(5)        
         ser.close()
-print(OPCNAME,"Ready")
+    
