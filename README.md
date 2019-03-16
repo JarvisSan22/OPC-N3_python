@@ -8,3 +8,6 @@ Aim: functional code python code for OPC N3 to run on RPI3, logging all data as 
 Creater: Daniel Jarvis
 Started: 5/3/2019 
 Working code: for Fan and Lazer on and Off.
+
+Conact me if you able to get the OPC N3 working 
+Email: ee18dj@leeds.ac.uk
