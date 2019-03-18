@@ -1,6 +1,6 @@
 #OPC N3 Python repository 
 
-Current statuse : Working
+Current status: Working
 
 Does : Get Data , hist data and PM data, as well as controls fan and laser
 To Do: Change bin weighting
