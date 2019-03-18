@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Mar 15 11:59:10 2019
-
-@author: Daniel Jarvis
-Note: Able to turn fan and Lazer on and off, but still cant getHist
+Created on Mon Mar 18 16:22:16 2019
+@author: Daniel Jarvi
+Working with Sebastien Sikora we found the command 0x61 what needed before ever bytes to be sent.
+Adding this correction, sending double the data bytes the filtering out the unwanted 0x61 responses, 
+The OPC N3 return data !!!!!
+This is not specified in the datasheet, and may not be an issue on the audiono code (Currently not tested), 
 """
+
 
 
 from __future__ import print_function
@@ -21,7 +24,7 @@ integration=5
 OPCNAME = "TestOPC"
 OPCPORT= "COM8"
 LOCATION = "Lab2"
-wait=0.00001
+wait=1e-06
 #
 # Init OPC for spi connection 
 
@@ -55,14 +58,14 @@ def fanOff(ser):
             
             ser.write(bytearray([0x61,0x03]))
             nl = ser.read(2)
-            print(nl)
+           # print(nl)
             T=T+1 
             if nl== (b"\xff\xf3" or b"xf3\xff"):
                 time.sleep(wait)
                 #fan off
                 ser.write(bytearray([0x61,0x02]))
                 nl = ser.read(2)
-                print(nl)
+          #      print(nl)
                 time.sleep(2)
                 fan="OFF"
                 print("Fan off")
@@ -86,14 +89,14 @@ def fanOn(ser):
         while True:   
             ser.write(bytearray([0x61,0x03]))
             nl = ser.read(2)
-            print(nl)
+         #   print(nl)
             T=T+1 
             if nl== (b"\xff\xf3" or b"xf3\xff"):
                 time.sleep(wait)
                 #fan on
                 ser.write(bytearray([0x61,0x03]))
                 nl = ser.read(2)
-                print(nl)
+        #        print(nl)
                 time.sleep(2)
                 fan="ON"
                 print("Fan On")
@@ -114,7 +117,7 @@ def LazOn(ser):
         while True:   
             ser.write(bytearray([0x61,0x03]))
             nl = ser.read(2)
-            print(nl)
+       #     print(nl)
            
             T=T+1 
             if nl== (b"\xff\xf3" or b"xf3\xff"):
@@ -122,7 +125,7 @@ def LazOn(ser):
                 #Lazer on
                 ser.write(bytearray([0x61,0x07]))
                 nl = ser.read(2)
-                print(nl)
+      #          print(nl)
                 time.sleep(wait)
                 Laz="ON"
                 print("Fan On")
@@ -146,14 +149,14 @@ def LazOff(ser):
         while True:   
             ser.write(bytearray([0x61,0x03]))
             nl = ser.read(2)
-            print(nl)
+     #       print(nl)
             T=T+1 
             if nl== (b"\xff\xf3" or b"xf3\xff"):
                 time.sleep(wait)
                 #Lazer off
                 ser.write(bytearray([0x61,0x06]))
                 nl = ser.read(2)
-                print(nl)
+    #            print(nl)
                 time.sleep(wait)
                 Laz="Off"
                 print("Lazer Off")
@@ -209,6 +212,7 @@ def Histdata(ans):
     data['pm2.5'] = struct.unpack('f',bytes(ans[64:68]))[0]
     data['pm10'] = struct.unpack('f',bytes(ans[68:72]))[0]
     data['Check']= combine_bytes(ans[84],ans[85])
+    
       #  print(data)
     return(data)
 
@@ -229,28 +233,45 @@ def read_all(port, chunk_size=86):
 
     return read_buffer
 
-
+def rightbytes(response):
+    '''
+    Get ride of the 0x61 byeste responce from the hist data, returning just the wanted data
+    '''
+    hist_response=[]
+    for j, k in enumerate(response):			# Each of the 86 bytes we expect to be returned is prefixed by 0xFF.
+        if ((j + 1) % 2) == 0:					# Throw away 0th, 2nd, 4th, 6th bytes, etc.
+            hist_response.append(k)		
+    return hist_response
 def getData(ser):
+        print("Get PM data")
         T=0
         
-        br = bytearray([0x61])
-        for i in range(0,13):
-            br.append(0x32)
         while True:
-            ser.write(bytearray([0x61,0x32]))
+            #initsiate getData commnad
+            ser.write([0x61,0x32])
             nl=ser.read(2)
-            
-            print(len(br)) 
-            if nl== (b"\xff\xf3" or b"xf3\xff"):
-                time.sleep(wait*10)
-                ser.write(br)
-                ans=bytearray(ser.read(13))
+          #  time.sleep(1e-05)
+            T=T+1
+            print(nl)
+            if nl== (b'\xff\xf3' or b'\xf3\xff' ):
+                #write to the OPC 
+                for i in range(14):        # Send the whole stream of bytes at once.
+                    ser.write([0x61, 0x01])
+                    time.sleep(0.00001)    
+                #time.sleep(.1)
+                #read the data
+                ans=bytearray(ser.readall())
+               # print("ans=",ans)
+                ans=rightbytes(ans)
+               # print("ans=",ans)
                 b1 = ans[0:4]
                 b2 = ans[4:8]
                 b3 = ans[8:12]
                 c1=struct.unpack('f',bytes(b1))[0]
                 c2=struct.unpack('f',bytes(b2))[0]
                 c3=struct.unpack('f',bytes(b3))[0]
+                check=combine_bytes(ans[12],ans[13])
+                print("Check=",check)
                 return([c1,c2,c3])
             elif T > 20:
                 print("Reset SPI")
@@ -268,51 +289,41 @@ def getHist(ser):
         T=0 #attemt varaible 
         while True:   
             print("get hist attempt ",T)
-            
-            #get the bytearray ready to send 
-            br = bytearray([0x61])
-            for i in range(0,85):
-                br.append(0x30)
-            print("br",br,len(br))
-            
-            
+        
             #reques the hist data set 
-            ser.write(bytearray([0x61,0x30]))
+            ser.write([0x61,0x30])
            # time.sleep(wait*10)
             nl = ser.read(2)
-            time.sleep(.1) #delay
-            #time.sleep(wait*10)
-            
-             
-            
-            
+          #  print(nl)
+            T=T+1  
+            print("Reading Hist data")
             print(nl)
-            T=T+1 
-            if nl== (b"\xff\xf3" or b"xf3\xff"):
-                print("Reading Hist data")
+            if nl== (b'\xff\xf3' or b'\xf3\xff' ):
+                for i in range(86):        # Send the whole stream of bytes at once.
+                        ser.write([0x61, 0x01])
+                        time.sleep(0.000001)   
+                
+               # ans=bytearray(ser.read(1))
+            #    print("ans=",ans,"len",len(ans))
                 time.sleep(wait) #delay
-                test=ser.write(br) 
-                print("ser.write= ",test)
-                time.sleep(1) #delay
-             
-                ans=bytearray(ser.read(1))
+                ans=bytearray(ser.readall())
                 print("ans=",ans,"len",len(ans))
-                time.sleep(wait) #delay
-                test=ser.readall()
-                ans=bytearray(test)
+                ans=rightbytes(ans) #get the wanted data bytes 
+               # ans=bytearray(test)
+                
                 print("ans=",ans,"len",len(ans))
-                print("test=",test,'len',len(test))
+                #print("test=",test,'len',len(test))
                 data=Histdata(ans)
                 
-                return(data ,ans, br)
-            elif T > 20:
+                return data 
+            if T > 20:
                 print("Reset SPI")
                 time.sleep(3) #time for spi buffer to reset
                 #reset SPI  conncetion 
                 initOPC(ser)
                 T=0
              
-                return
+                return "No Data"
             else:
                 time.sleep(wait*10) #wait 1e-05 before next commnad 
                         
@@ -345,7 +356,7 @@ if __name__ == "__main__":
         "bytesize": serial.EIGHTBITS,
         "stopbits": serial.STOPBITS_ONE,
          "xonxoff": False,
-        "timeout":  1,
+        "timeout":  wait,
         # "inter_byte_timeout":wait,# Alternative
         # "write_timeout":wait,
          
@@ -377,18 +388,19 @@ if __name__ == "__main__":
         LazOn(ser)
        # time.sleep(5)
        # PM data#
-        for x in range(0,2):
+        for x in range(0,1):
         #   print(getData(ser))
             
             print(getData(ser))
-          
+            time.sleep(1)
+            print(getHist(ser))
             time.sleep(integration)  
         print("Turning off")   
         time.sleep(2)       
-        ser.close()
-        time.sleep(wait)
-        ser.open()
+      
+        
         LazOff(ser)
+        time.sleep(wait)
         fanOff(ser)
     
       
