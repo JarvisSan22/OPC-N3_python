@@ -170,8 +170,15 @@ def LazOff(ser):
             else:
                 time.sleep(wait*10) #wait 1e-05 before next commnad 
                         
-        
-        
+               
+def RHcon(ans):
+    #ans is  combine_bytes(ans[52],ans[53])
+    RH=100*(ans/(2**16-1))
+    return RH
+def Tempcon(ans):
+      #ans is  combine_bytes(ans[52],ans[53])
+    Temp=-45+175*(ans/(2**16-1))
+    return Temp
 def combine_bytes(LSB, MSB):
         return (MSB << 8) | LSB       
 def Histdata(ans):
@@ -206,8 +213,8 @@ def Histdata(ans):
     data['Bin 24'] = combine_bytes(ans[48],ans[49])
     data['period'] = combine_bytes(ans[52],ans[53])
     data['FlowRate'] = combine_bytes(ans[54],ans[55])
-    data['Temp']=combine_bytes(ans[56],ans[57])
-    data['RH'] = combine_bytes(ans[52],ans[53])
+    data['Temp']=Tempcon(combine_bytes(ans[56],ans[57]))
+    data['RH'] = RHcon(combine_bytes(ans[58],ans[59]))
     data['pm1'] = struct.unpack('f',bytes(ans[60:64]))[0]
     data['pm2.5'] = struct.unpack('f',bytes(ans[64:68]))[0]
     data['pm10'] = struct.unpack('f',bytes(ans[68:72]))[0]
@@ -215,7 +222,6 @@ def Histdata(ans):
     
       #  print(data)
     return(data)
-
 def read_all(port, chunk_size=86):
     """Read all characters on the serial port and return them."""
     if not port.timeout:
