@@ -389,10 +389,12 @@ if __name__ == "__main__":
 
         print("Fan Off:")
         fanOff(ser)
+	LazOff(ser)
         time.sleep(5)
 
         print("Fan on:")
         fanOn(ser)
+	LazOn(ser)
         time.sleep(5)	
         print(OPCNAME,"Ready")
         while time.time() % integration != 0:
