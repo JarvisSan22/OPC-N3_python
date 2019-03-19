@@ -9,6 +9,6 @@ Aim: functional code python code for OPC N3 to run on RPI3, logging all data as 
 
 Created: Daniel Jarvis
 Started: 5/3/2019 
-Fucntional 18/3/2019
+Functional: 18/3/2019
 
 Email: ee18dj@leeds.ac.uk
