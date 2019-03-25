@@ -243,7 +243,7 @@ def initFile(date):
         print("Opening Output File:")
         if(not os.path.isfile(ofile)):
                 f=open(ofile,'w+')
-                print("time,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,period,FlowRate,Temp,RH,pm1,pm2,pm10","Check",file=f)
+                print("time,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,period,FlowRate,Temp,RH,pm1,pm2,pm10,Check",file=f)
         else:
                 f=open(ofile,'a')
         return f
@@ -409,9 +409,18 @@ if __name__ == "__main__":
                     ts = time.time()
                     tnow = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
                     data=t
-                    print(tnow + "," + str(data['Bin 0']) + ","  + str(data['Bin 1']) + ","  + str(data['Bin 2']) + ","  + str(data['Bin 3']) + ","  + str(data['Bin 4']) + ","  + str(data['Bin 5']) + ","  + str(data['Bin 6']) + ","  + str(data['Bin 7']) + ","  + str(data['Bin 8']) + ","  + str(data['Bin 9']) + ","  + str(data['Bin 10']) + ","  + str(data['Bin 11']) + ","  + str(data['Bin 12']) + ","  + str(data['Bin 13']) + ","  + str(data['Bin 14']) + ","  + str(data['Bin 15']) + ","  + str(data['Bin 16']) + "," + str(data['Bin 17']) + ","+ str(data['Bin 18']) + ","+ str(data['Bin 19']) + ","+ str(data['Bin 20']) + ","+ str(data['Bin 21']) + "," + str(data['Bin 22']) + ","+ str(data['Bin 23']) + ","+ str(data['Bin 24']) + ","+str(data['period']) + ","+ str(data['FlowRate']) + ","+ str(data['Temp']) + ","+ str(data['RH']) + ","  + str(data['pm1']) + ","  + str(data['pm2.5']) + ","  + str(data['pm10']) +"," + str(data['Check']) , file=f)
-                    print("Time",tnow ," Temp:",str(data['Temp'])," RH:",str(data['RH']), " PM1:", str(data['pm1']) ,"PM2.5:", str(data['pm2.5']) ,"PM10:", str(data['pm10']))
-                    f.flush()
+			#Often iff errors occre, the issues is with a failed getHist, but on the next getHist it works.
+			#The try, then except deals with that. 
+		    try: 
+                    	print(tnow + "," + str(data['Bin 0']) + ","  + str(data['Bin 1']) + ","  + str(data['Bin 2']) + ","  + str(data['Bin 3']) + ","  + str(data['Bin 4']) + ","  + str(data['Bin 5']) + ","  + str(data['Bin 6']) + ","  + str(data['Bin 7']) + ","  + str(data['Bin 8']) + ","  + str(data['Bin 9']) + ","  + str(data['Bin 10']) + ","  + str(data['Bin 11']) + ","  + str(data['Bin 12']) + ","  + str(data['Bin 13']) + ","  + str(data['Bin 14']) + ","  + str(data['Bin 15']) + ","  + str(data['Bin 16']) + "," + str(data['Bin 17']) + ","+ str(data['Bin 18']) + ","+ str(data['Bin 19']) + ","+ str(data['Bin 20']) + ","+ str(data['Bin 21']) + "," + str(data['Bin 22']) + ","+ str(data['Bin 23']) + ","+ str(data['Bin 24']) + ","+str(data['period']) + ","+ str(data['FlowRate']) + ","+ str(data['Temp']) + ","+ str(data['RH']) + ","  + str(data['pm1']) + ","  + str(data['pm2.5']) + ","  + str(data['pm10']) +"," + str(data['Check']) , file=f)
+                        print(OPCNAME," Time",tnow ," Temp:",str(data['Temp'])," RH:",str(data['RH']), " PM1:", str(data['pm1']) ,"PM2.5:", str(data['pm2.5']) ,"PM10:", str(data['pm10']))
+		    except:
+			print("Error")
+			#Write nan data, need to keep track of how many time these types of errors occure for data coverage
+			print(tnow + "," + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan"+ ","  + "nan" + ","  + "nan "+ ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + "," + "nan" + ","+ "nan"+ ","+ "nan"+","+ "nan" + ","+ "nan" + "," + "nan" + ","+ "nan" + ","+ "nan" + ","+"nan" + ","+ "nan"+ ","+ "nan"+ ","+ "nan"+ ","  + "nan" + ","  + "nan" + ","  + "nan" +"," + "nan" , file=f)
+                    	
+			pass
+		    f.flush()
     
                     if (datetime.date.today() - datestart).days > 0:
                             f.close()
