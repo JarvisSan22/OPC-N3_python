@@ -301,21 +301,22 @@ def getData(ser):
 #get hist data 
 def getHist(ser):
     
-        #OPC N2 method 
-        T=0 #attemt varaible 
+        
+        T=0 #trys varaible 
         while True:   
             print("get hist attempt ",T)
         
             #reques the hist data set 
             ser.write([0x61,0x30])
-           # time.sleep(wait*10)
+        
             nl = ser.read(2)
           #  print(nl)
             T=T+1  
             print("Reading Hist data")
             print(nl)
             if nl== (b'\xff\xf3' or b'\xf3\xff' ):
-                for i in range(86):        # Send the whole stream of bytes at once.
+			#send 86 time to OPC N3 to return HIST data and wait 10 micro seconds between each
+                for i in range(86):       
                         ser.write([0x61, 0x01])
                         time.sleep(0.000001)   
                 
@@ -337,23 +338,13 @@ def getHist(ser):
                 time.sleep(3) #time for spi buffer to reset
                 #reset SPI  conncetion 
                 initOPC(ser)
-                T=0
-             
+                T=0 #reset trys
                 return "No Data"
             else:
                 time.sleep(wait*10) #wait 1e-05 before next commnad 
                         
-                        # br.append(0x30) 
-                        
-                #print("br",br,len(br))
-                
-                #older  vertion
-               # br = bytearray([0x61])
-              #  time.sleep(wait)
-               # for i in range(0,85):
-                #    br.append(0x30)   
-                #print(i,len(br),br)
-                
+                      
+           
                 
                
     
@@ -361,8 +352,7 @@ def getHist(ser):
 
 if __name__ == "__main__":
         serial_opts = {
-        # built-in serial port is "COM1"
-        # USB serial port is "COM4"
+       
         "port": OPCPORT,
         "baudrate": 9600,
         "parity": serial.PARITY_NONE,
@@ -376,7 +366,9 @@ if __name__ == "__main__":
         time.sleep(2)
 
         ser = serial.Serial(**serial_opts)
-        #ser.open()
+        
+	
+	#start up dance 
 	
         print("**************************************************")
         print("DID YOU CHECK THE DATE/TIME ????????")
@@ -396,7 +388,10 @@ if __name__ == "__main__":
         fanOn(ser)
 	LazOn(ser)
         time.sleep(5)	
+	
         print(OPCNAME,"Ready")
+	
+	#time loop
         while time.time() % integration != 0:
             pass         # now is in form YYYYMMDD
             datestart = datetime.date.today()
@@ -414,7 +409,7 @@ if __name__ == "__main__":
 		    try: 
                     	print(tnow + "," + str(data['Bin 0']) + ","  + str(data['Bin 1']) + ","  + str(data['Bin 2']) + ","  + str(data['Bin 3']) + ","  + str(data['Bin 4']) + ","  + str(data['Bin 5']) + ","  + str(data['Bin 6']) + ","  + str(data['Bin 7']) + ","  + str(data['Bin 8']) + ","  + str(data['Bin 9']) + ","  + str(data['Bin 10']) + ","  + str(data['Bin 11']) + ","  + str(data['Bin 12']) + ","  + str(data['Bin 13']) + ","  + str(data['Bin 14']) + ","  + str(data['Bin 15']) + ","  + str(data['Bin 16']) + "," + str(data['Bin 17']) + ","+ str(data['Bin 18']) + ","+ str(data['Bin 19']) + ","+ str(data['Bin 20']) + ","+ str(data['Bin 21']) + "," + str(data['Bin 22']) + ","+ str(data['Bin 23']) + ","+ str(data['Bin 24']) + ","+str(data['period']) + ","+ str(data['FlowRate']) + ","+ str(data['Temp']) + ","+ str(data['RH']) + ","  + str(data['pm1']) + ","  + str(data['pm2.5']) + ","  + str(data['pm10']) +"," + str(data['Check']) , file=f)
                         print(OPCNAME," Time",tnow ," Temp:",str(data['Temp'])," RH:",str(data['RH']), " PM1:", str(data['pm1']) ,"PM2.5:", str(data['pm2.5']) ,"PM10:", str(data['pm10']))
-		    except:
+		    except: #if get gist falues and reurn NoData 
 			print("Error")
 			#Write nan data, need to keep track of how many time these types of errors occure for data coverage
 			print(tnow + "," + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan"+ ","  + "nan" + ","  + "nan "+ ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + "," + "nan" + ","+ "nan"+ ","+ "nan"+","+ "nan" + ","+ "nan" + "," + "nan" + ","+ "nan" + ","+ "nan" + ","+"nan" + ","+ "nan"+ ","+ "nan"+ ","+ "nan"+ ","  + "nan" + ","  + "nan" + ","  + "nan" +"," + "nan" , file=f)
@@ -434,5 +429,5 @@ if __name__ == "__main__":
 
         f.close()
         fanOff(ser)
-
+	LazOff(ser)
         ser.close()
