@@ -22,7 +22,7 @@ integration=5
 
 # NAMING VARIABLES
 OPCNAME = "TestOPC"
-OPCPORT= "COM8"
+OPCPORT=  "/dev/ttyACM0"
 LOCATION = "Lab2"
 wait=1e-06
 #
