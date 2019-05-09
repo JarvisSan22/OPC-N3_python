@@ -3,7 +3,9 @@ Author:Daniel Jarvis
 Contacts:ee18dj@leeds.ac.uk
 </br>
 Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through the SPI itnerface to a raspibarry pi. 
-v
+
+
+
 ![OPC-N3](https://github.com/JarvisSan22/OPC-N3_python/blob/master/OPCN3.jpg)
 
 
