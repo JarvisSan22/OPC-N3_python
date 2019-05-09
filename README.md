@@ -15,14 +15,14 @@ Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 fun
 
 
 ### OPCscripts details:
--**opcn3_rec.py**- OPCN3 functions script
--**opcn2_rec.py**- OPCN2 function script
--**variables.py**- sensors operation varaibles, for attaced sensors names and ports, log interval time, opration type (log or GPS) and location name with latitude and longitude coardinets 
--**start.py**- Start oprataion scripts. RUN all sensors attaced and specified in **variables.py**
--**status.py**- Checks RPI3 status, logging data on time, IP address, and update RPI time if internet is corrected
--**/DHT**- DHT  Sensors libary by Adafuit
--**DHT.py**- DHT scripts to be called in **start.py** to log data to csv
--**GPS.py**- edits of python GPS scripts by [Dan Mandle](https://github.com/ggtd/independend-python-gps-logger-for-airodump-ng/blob/master/log_position.py) to be called in **start.py** to log data to csv
+- **opcn3_rec.py**- OPCN3 functions script
+- **opcn2_rec.py**- OPCN2 function script
+- **variables.py**- sensors operation varaibles, for attaced sensors names and ports, log interval time, opration type (log or GPS) and location name with latitude and longitude coardinets 
+- **start.py**- Start oprataion scripts. RUN all sensors attaced and specified in **variables.py**
+- **status.py**- Checks RPI3 status, logging data on time, IP address, and update RPI time if internet is corrected
+- **/DHT**- DHT  Sensors libary by Adafuit
+- **DHT.py**- DHT scripts to be called in **start.py** to log data to csv
+- **GPS.py**- edits of python GPS scripts by [Dan Mandle](https://github.com/ggtd/independend-python-gps-logger-for-airodump-ng/blob/master/log_position.py) to be called in **start.py** to log data to csv
 
 
 ### Bascis Function list:
