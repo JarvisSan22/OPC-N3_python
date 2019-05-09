@@ -10,13 +10,16 @@ import datetime
 import sys
 import os.path
 import variables as V
-from DHT import DHT
+
+if V.DHTON=="ON":
+    from DHT import DHT
 #import GPSGET
 #import GPS2
 
 MODE=V.MODE
 if MODE=="GPS":
     from GPS2 import Work #IF GPS is on import module
+    
 from opcn2_rec import Opcn2
 from opcn3_rec import Opcn3
 
