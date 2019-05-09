@@ -13,6 +13,18 @@ Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-
 
 Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 functions.  Basics log scripts **"OPCN3_rec.py"** to log the data to a CSV and a more advanced functional library under **AQ** currently operation at the University of Leed and Summit site in Greenland.  The AQ library designed to work for multiple OPC attached to the same RPI3 logging all the data to one CSV file. 
 
+
+### OPCscripts details:
+-**opcn3_rec.py**- OPCN3 functions script
+-**opcn2_rec.py**- OPCN2 function script
+-**variables.py**- sensors operation varaibles, for attaced sensors names and ports, log interval time, opration type (log or GPS) and location name with latitude and longitude coardinets 
+-**start.py**- Start oprataion scripts. RUN all sensors attaced and specified in **variables.py**
+-**status.py**- Checks RPI3 status, logging data on time, IP address, and update RPI time if internet is corrected
+-**/DHT**- DHT  Sensors libary by Adafuit
+-**DHT.py**- DHT scripts to be called in **start.py** to log data to csv
+-**GPS.py**- edits of python GPS scripts by [Dan Mandle](https://github.com/ggtd/independend-python-gps-logger-for-airodump-ng/blob/master/log_position.py) to be called in **start.py** to log data to csv
+
+
 ### Bascis Function list:
 - **initOPC():** , initionate SPI connection with OPCN3
 - **fanOn()** , turn on fan
@@ -25,6 +37,15 @@ Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 fun
 - **getHist():** , gest hist data from OPC
 - **getdata():** , gets just PM data from OPC
 - **Hisdtdata():** , get outbut from gethist and convert it into the varaible information
+
+
+
+### AQ repositroy structure:
+-**/AQ**-
+-**/AQ/OPCData**- Directory for log data to be stored
+-**/AQ/OPCscripts**- Scripts to run OPCN3, OPCN2 with options for DHT11 or DHT22 Temprature and RH sensors and GPS attachment. 
+-**/AQ/teamviewer-host_14.1.18533_armhf.deb**- RPI3 installer package for [teamviewer](https://www.teamviewer.com/en/buy-now/?pid=google.tv_ex_repeat.s.gb&gclid=Cj0KCQjwn8_mBRCLARIsAKxi0GJuys2-XjuxDuTIxFylKvXF4VzWCYLQhYoHMkoMawyTfyEpjDdK40YaAuQ9EALw_wcB) allowing romote over a WIFI connection. 
+ 
 
 
 # AQ set up
@@ -74,26 +95,10 @@ add
 '@reboot python3 AQ/OPCscripts/start.py'
 
 
-### AQ repositroy structure:
--**/AQ **  -
--**/AQ/OPCData ** - Directory for log data to be stored
--**/AQ/OPCscripts** -Scripts to run OPCN3, OPCN2 with options for DHT11 or DHT22 Temprature and RH sensors and GPS attachment. 
--**/AQ/teamviewer-host_14.1.18533_armhf.deb** - RPI3 installer package for [teamviewer](https://www.teamviewer.com/en/buy-now/?pid=google.tv_ex_repeat.s.gb&gclid=Cj0KCQjwn8_mBRCLARIsAKxi0GJuys2-XjuxDuTIxFylKvXF4VzWCYLQhYoHMkoMawyTfyEpjDdK40YaAuQ9EALw_wcB) allowing romote over a WIFI connection. 
- 
-### OPCscripts details:
--**opcn3_rec.py**- OPCN3 functions script
--**opcn2_rec.py**- OPCN2 function script
--**variables.py**- sensors operation varaibles, for attaced sensors names and ports, log interval time, opration type (log or GPS) and location name with latitude and longitude coardinets 
--**start.py**- Start oprataion scripts. RUN all sensors attaced and specified in **variables.py**
--**status.py**- Checks RPI3 status, logging data on time, IP address, and update RPI time if internet is corrected
--**/DHT**- DHT  Sensors libary by Adafuit
--**DHT.py**- DHT scripts to be called in **start.py** to log data to csv
--**GPS.py** - edits of python GPS scripts by [Dan Mandle](https://github.com/ggtd/independend-python-gps-logger-for-airodump-ng/blob/master/log_position.py) to be called in **start.py** to log data to csv
-
 
 
 ### To do:
--add OPCN3 live data viewer 
--add functions to change default bin weighting 
--Implement new PM10, PM2.5 and PM1 calculation
+-add OPCN3 live data viewer-
+-add functions to change default bin weighting-
+-Implement new PM10, PM2.5 and PM1 calculation-
 
