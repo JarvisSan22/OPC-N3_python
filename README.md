@@ -1,8 +1,9 @@
 # OPC N3 Python repository 
-Author:Daniel Jarvis 
-Contacts:ee18dj@leeds.ac.uk
-</br>
-Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through the SPI itnerface to a raspibarry pi. 
+Author: Daniel Jarvis 
+Contacts: ee18dj@leeds.ac.uk
+
+
+Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through a SPI itnerface to a raspibarry pi. 
 
 
 
@@ -41,10 +42,10 @@ Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 fun
 
 
 ### AQ repositroy structure:
--**/AQ**-
--**/AQ/OPCData**- Directory for log data to be stored
--**/AQ/OPCscripts**- Scripts to run OPCN3, OPCN2 with options for DHT11 or DHT22 Temprature and RH sensors and GPS attachment. 
--**/AQ/teamviewer-host_14.1.18533_armhf.deb**- RPI3 installer package for [teamviewer](https://www.teamviewer.com/en/buy-now/?pid=google.tv_ex_repeat.s.gb&gclid=Cj0KCQjwn8_mBRCLARIsAKxi0GJuys2-XjuxDuTIxFylKvXF4VzWCYLQhYoHMkoMawyTfyEpjDdK40YaAuQ9EALw_wcB) allowing romote over a WIFI connection. 
+- **/AQ**-
+- **/AQ/OPCData**- Directory for log data to be stored
+- **/AQ/OPCscripts**- Scripts to run OPCN3, OPCN2 with options for DHT11 or DHT22 Temprature and RH sensors and GPS attachment. 
+- **/AQ/teamviewer-host_14.1.18533_armhf.deb**- RPI3 installer package for [teamviewer](https://www.teamviewer.com/en/buy-now/?pid=google.tv_ex_repeat.s.gb&gclid=Cj0KCQjwn8_mBRCLARIsAKxi0GJuys2-XjuxDuTIxFylKvXF4VzWCYLQhYoHMkoMawyTfyEpjDdK40YaAuQ9EALw_wcB) allowing romote over a WIFI connection. 
  
 
 
@@ -74,16 +75,13 @@ in OPCscripts
 **update *varaibles.py***
 'nano variables.py'
 
--Update the RPI3 name (RPINAME)
+Update the RPI3 name (RPINAME)
 
--operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile sensing
+operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile sensing
 
--RUNNING sensors (RUNSEN) (Note: multiple OPC sensors can be added)
-
--The connection ports (RUNPORTS), if your not sure what port it is 'cd /dev/' then unplug and replug the OPC cable
-
--DHT setting, if DHT is connected set "DHTON" to "ON", and insert the DHT name in (DHTNAMES) and connected RPI pin in (DHTPINS)
-
+RUNNING sensors (RUNSEN) (Note: multiple OPC sensors can be added)
+The connection ports (RUNPORTS), if your not sure what port it is 'cd /dev/' then unplug and replug the OPC cable
+DHT setting, if DHT is connected set "DHTON" to "ON", and insert the DHT name in (DHTNAMES) and connected RPI pin in (DHTPINS)
 
 With all variables now set up hopefully correctly by just running start.py the attached OPC sensors will start logging
 
@@ -91,7 +89,7 @@ With all variables now set up hopefully correctly by just running start.py the a
 
 This command can be added to crontab to get the sensors running on startup.
 'sudo nano crontab -e'
-add 
+ 
 '@reboot python3 AQ/OPCscripts/start.py'
 
 
