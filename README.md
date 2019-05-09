@@ -98,7 +98,7 @@ add
 
 
 ### To do:
--add OPCN3 live data viewer-
--add functions to change default bin weighting-
--Implement new PM10, PM2.5 and PM1 calculation-
+- add OPCN3 live data viewer
+- add functions to change default bin weighting
+- Implement new PM10, PM2.5 and PM1 calculation
 
