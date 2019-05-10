@@ -11,6 +11,7 @@ Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-
 
 
 # Repository details 
+===
 
 Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 functions.  Basics log scripts **"OPCN3_rec.py"** to log the data to a CSV and a more advanced functional library under **AQ** currently operation at the University of Leed and Summit site in Greenland.  The AQ library designed to work for multiple OPC attached to the same RPI3 logging all the data to one CSV file. 
 
@@ -53,9 +54,12 @@ Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 fun
 Once RPI3 is set up and connected to wifi
 </br>
 defult set up packages
+
 'sudo apt-get update'   
+
 'sudo pip install psutil'   used to check wifi in **status.py**
-'sudo pip install ntplib'   used to check time RPI3 and update it in **status.py
+
+'sudo pip install ntplib'   used to check time RPI3 and update it in **status.py**
 
 
 **Optional Installs** 
@@ -77,7 +81,7 @@ in OPCscripts
 
 Update the RPI3 name (RPINAME)
 
-operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile sensing
+operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile usage 
 
 RUNNING sensors (RUNSEN) (Note: multiple OPC sensors can be added)
 The connection ports (RUNPORTS), if your not sure what port it is 'cd /dev/' then unplug and replug the OPC cable
