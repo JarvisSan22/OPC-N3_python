@@ -11,7 +11,7 @@ Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-
 
 
 # Repository details 
-===
+
 
 Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 functions.  Basics log scripts **"OPCN3_rec.py"** to log the data to a CSV and a more advanced functional library under **AQ** currently operation at the University of Leed and Summit site in Greenland.  The AQ library designed to work for multiple OPC attached to the same RPI3 logging all the data to one CSV file. 
 
