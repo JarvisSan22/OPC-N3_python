@@ -63,8 +63,10 @@ defult set up packages
 
 
 **Optional Installs** 
+
 **DHT install**
 'sudo python3 AQ/OPCscripts/DHT/setup.py install'
+
 **GPS install**
 GPS used is [G-mouse Usb Gps Dongle](https://www.amazon.co.uk/Diymall-G-mouse-Glonass-Raspberry-Aviation/dp/B015E2XSSO/ref=sr_1_3_sspa?crid=K5C3JJ0ZYQHH&keywords=gps+dongle+usb&qid=1557393883&s=gateway&sprefix=GPS+dongle%2Caps%2C131&sr=8-3-spons&psc=1), GPS set up on RPI3 follows those found on this youtube vid by [KM4ACK](https://www.youtube.com/watch?v=Oag9qYuhMGg), setting the GPS up as the RPI3 clock as well. 
 
