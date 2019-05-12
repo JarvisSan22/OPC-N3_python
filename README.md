@@ -1,9 +1,13 @@
+
+
+
+
 # OPC N3 Python repository 
 Author: Daniel Jarvis 
 Contacts: ee18dj@leeds.ac.uk
 
 
-Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through a SPI itnerface to a raspibarry pi. 
+Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through an SPI interface to a raspberry pi. 
 
 
 
@@ -53,7 +57,7 @@ Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 fun
 # AQ set up
 Once RPI3 is set up and connected to wifi
 </br>
-defult set up packages
+default set up packages
 
 'sudo apt-get update'   
 
@@ -68,7 +72,7 @@ defult set up packages
 'sudo python3 AQ/OPCscripts/DHT/setup.py install'
 
 **GPS install**
-GPS used is [G-mouse Usb Gps Dongle](https://www.amazon.co.uk/Diymall-G-mouse-Glonass-Raspberry-Aviation/dp/B015E2XSSO/ref=sr_1_3_sspa?crid=K5C3JJ0ZYQHH&keywords=gps+dongle+usb&qid=1557393883&s=gateway&sprefix=GPS+dongle%2Caps%2C131&sr=8-3-spons&psc=1), GPS set up on RPI3 follows those found on this youtube vid by [KM4ACK](https://www.youtube.com/watch?v=Oag9qYuhMGg), setting the GPS up as the RPI3 clock as well. 
+GPS used is [G-mouse USB Gps Dongle](https://www.amazon.co.uk/Diymall-G-mouse-Glonass-Raspberry-Aviation/dp/B015E2XSSO/ref=sr_1_3_sspa?crid=K5C3JJ0ZYQHH&keywords=gps+dongle+usb&qid=1557393883&s=gateway&sprefix=GPS+dongle%2Caps%2C131&sr=8-3-spons&psc=1), GPS set up on RPI3 follows those found on this youtube vid by [KM4ACK](https://www.youtube.com/watch?v=Oag9qYuhMGg), setting the GPS up as the RPI3 clock as well. 
 
 **RPI3 external clock**
 if the GPS is not attached to the [Adafruit PiRTC](https://www.amazon.co.uk/Adafruit-PiRTC-PCF8523-Raspberry-ADA3386/dp/B072DWKDW9/ref=sr_1_2?keywords=adafruit+real+time+clock&qid=1557395250&s=gateway&sr=8-2) is recommended to be attached to the RPI3 to stop the RPI3 time drifting when the internet is lost. [Setup instructions](https://www.amazon.co.uk/Adafruit-PiRTC-PCF8523-Raspberry-ADA3386/dp/B072DWKDW9/ref=sr_1_2?keywords=adafruit+real+time+clock&qid=1557395250&s=gateway&sr=8-2)
@@ -83,7 +87,7 @@ in OPCscripts
 
 Update the RPI3 name (RPINAME)
 
-operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile usage 
+operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile usage. 
 
 RUNNING sensors (RUNSEN) (Note: multiple OPC sensors can be added)
 The connection ports (RUNPORTS), if your not sure what port it is 'cd /dev/' then unplug and replug the OPC cable
@@ -97,8 +101,6 @@ This command can be added to crontab to get the sensors running on startup.
 'sudo nano crontab -e'
  
 '@reboot python3 AQ/OPCscripts/start.py'
-
-
 
 
 ### To do:
