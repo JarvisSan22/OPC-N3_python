@@ -29,6 +29,7 @@ Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 fun
 - **/DHT** DHT  Sensors libary by Adafuit
 - **DHT.py** DHT scripts to be called in **start.py** to log data to csv
 - **GPS.py** edits of python GPS scripts by [Dan Mandle](https://github.com/ggtd/independend-python-gps-logger-for-airodump-ng/blob/master/log_position.py) to be called in **start.py** to log data to csv
+- **AQ/MulOPCData.py** script to read the csv output, accounting for multiple OPC attaced to one RPI3
 
 
 ### Bascis Function list:
@@ -105,6 +106,7 @@ This command can be added to crontab to get the sensors running on startup.
 
 ### To do:
 - add OPCN3 live data viewer
+- SDS011 support 
 - add functions to change default bin weighting
 - Implement new PM10, PM2.5 and PM1 calculation
 
