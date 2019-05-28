@@ -9,6 +9,8 @@ Contacts: ee18dj@leeds.ac.uk
 
 Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through an SPI interface to a raspberry pi. 
 
+- Additonal support for SDS011 added 28/05/2019
+
 
 
 ![OPC-N3](https://github.com/JarvisSan22/OPC-N3_python/blob/master/OPCN3.jpg)
@@ -67,6 +69,7 @@ default set up packages
 'sudo pip install ntplib'   used to check time RPI3 and update it in **status.py**
 
 
+
 **Optional Installs** 
 
 **DHT install**
@@ -104,9 +107,16 @@ This command can be added to crontab to get the sensors running on startup.
 '@reboot python3 AQ/OPCscripts/start.py'
 
 
+# SDS011 support
+
+With an plugged in SDS011, in 'variables.py' add "/dev/ttyACM1" to RUNPORTS and a name for the SDSO11 in RUNSEN. Instead of running start.py, run 'python3 start-SDS.py'. This will add a columns for the SDSO11s; pm2.5, pm10 and the other unkownvalue (assumed to be TSP) reading. 
+
+
+
+
+
 ### To do:
 - add OPCN3 live data viewer
-- SDS011 support 
 - add functions to change default bin weighting
 - Implement new PM10, PM2.5 and PM1 calculation
 
