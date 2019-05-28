@@ -109,7 +109,7 @@ This command can be added to crontab to get the sensors running on startup.
 
 ### SDS011 support
 
-With an plugged in SDS011, in 'variables.py' add "/dev/ttyACM1" to RUNPORTS and a name for the SDSO11 in RUNSEN. Instead of running start.py, run 'python3 start-SDS.py'. This will add a columns for the SDSO11s; pm2.5, pm10 and the other unkownvalue (assumed to be TSP) reading. 
+With an plugged in SDS011, in 'variables.py' add "/dev/ttyUSB0" to RUNPORTS and a name for the SDSO11 in RUNSEN. Instead of running start.py, run 'python3 start-SDS.py'. This will add a columns for the SDSO11s; pm2.5, pm10 and the other unkownvalue (assumed to be TSP) reading. 
 
 
 
