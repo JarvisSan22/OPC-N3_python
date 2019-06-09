@@ -10,6 +10,7 @@ Contacts: ee18dj@leeds.ac.uk
 Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-content/uploads/2018/02/OPC-N3.pdf), and [OPC-N2](http://stg-uneplive.unep.org/media/aqm_document_v1/Blue%20Print/Components/Microcomputer%20and%20sensors/B.%20Dust%20Sensor%20Specifications/B.1%20Alphasense%20OPC%20N1/072-0300%20OPC-N2%20manual%20issue%203.pdf), connected through an SPI interface to a raspberry pi. 
 
 - Additonal support for SDS011 added 28/05/2019
+- Dashboard Added in AQ/AQplotter
 
 
 
@@ -19,8 +20,10 @@ Python library for the [Aplhasense OPC-N3](http://www.alphasense.com/WEB1213/wp-
 # Repository details 
 
 
-Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 functions.  Basics log scripts **"OPCN3_rec.py"** to log the data to a CSV and a more advanced functional library under **AQ** currently operation at the University of Leed and Summit site in Greenland.  The AQ library designed to work for multiple OPC attached to the same RPI3 logging all the data to one CSV file. 
+Basic functions scripts **"OPCN3_test.py"**  for direct control of the OPCN3 functions.  Basics log scripts **"OPCN3_rec.py"** to log the data to a CSV and a more advanced functional library under **AQ** currently operation at the University of Leed and Summit site in Greenland.  The AQ library designed to work for multiple OPC attached to the same RPI3 logging all the data to one CSV file.  
 
+Dashbord **"AQ/AQplotter"** ( see repository for further instructions). Dashboard shows diffrent varaibles, as well as options for GPS maps and static maps, what work for multiple sensors in diffrent location. (More updates coming soon)
+![Dashboard](https://github.com/JarvisSan22/OPC-N3_python/blob/master/AQ/AQplotter/Dashbord.gif)
 
 ### OPCscripts details:
 - **opcn3_rec.py** OPCN3 functions script
