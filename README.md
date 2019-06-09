@@ -103,6 +103,8 @@ RUNNING sensors (RUNSEN) (Note: multiple OPC sensors can be added)
 The connection ports (RUNPORTS), if your not sure what port it is 'cd /dev/' then unplug and replug the OPC cable
 DHT setting, if DHT is connected set "DHTON" to "ON", and insert the DHT name in (DHTNAMES) and connected RPI pin in (DHTPINS)
 
+![variables](https://github.com/JarvisSan22/OPC-N3_python/blob/master/variables.png)
+
 With all variables now set up hopefully correctly by just running start.py the attached OPC sensors will start logging
 
 'python3 start.py'
@@ -112,7 +114,7 @@ This command can be added to crontab to get the sensors running on startup.
  
 '@reboot python3 AQ/OPCscripts/start.py'
 
-
+![Runtest](https://github.com/JarvisSan22/OPC-N3_python/blob/master/Runexample.gif)
 
 ### SDS011 support
 
