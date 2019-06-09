@@ -3,6 +3,8 @@
 Author : Daniel Jarvis 
 Contacts : ee18dj@leeds.ac.uk
 
+### Currenrly not working on RPI3,
+
 ### Needed imports
 1st updata
 - sudo apt-get update
@@ -15,7 +17,15 @@ Contacts : ee18dj@leeds.ac.uk
 1nd get other import for map and plots
   -sudo pip install mpld3
   -sudo pip install folium 
-  
+ 
+ # "AQDataplot.py"
+ Dashboard creatuer scripts, with many options based on data varaibles and addional maps (See plot OPTIONS). Base Dashboard works for multiple sensors as long as all the data is in the same folder. To run:
+ - 1st check AQDataplot.py, nano AQDataplot.py
+ - 2nd Updata "Sens" sensors you want to plot, "vals" the varaibles you want to lot, "ave" timestampe average ("RAW","1T","10T","60t" ...)
+ ,"Dates" desired dates for the dashbord (deafult is today and yesterday), "filename" save file name, and "DataFolder" where is all the data stored 
+ - 3rd "RUN" python AQDataplot.py 
+ 
+ # Plot OPTIONS 
   
  ### "STATICMAP"
 ![STATICMAP1](https://github.com/JarvisSan22/OPC-N3_python/blob/master/AQ/AQplotter/STATICMAP.gif)
