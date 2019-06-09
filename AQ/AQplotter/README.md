@@ -25,6 +25,8 @@ Contacts : ee18dj@leeds.ac.uk
  ,"Dates" desired dates for the dashbord (deafult is today and yesterday), "filename" save file name, and "DataFolder" where is all the data stored 
  - 3rd "RUN" python AQDataplot.py 
  
+ ![DASHBOARD](https://github.com/JarvisSan22/OPC-N3_python/blob/master/AQ/AQplotter/Dashbord.gif)
+ 
  # Plot OPTIONS 
   
  ### "STATICMAP"
