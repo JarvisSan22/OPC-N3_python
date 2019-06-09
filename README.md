@@ -81,6 +81,9 @@ default set up packages
 **GPS install**
 GPS used is [G-mouse USB Gps Dongle](https://www.amazon.co.uk/Diymall-G-mouse-Glonass-Raspberry-Aviation/dp/B015E2XSSO/ref=sr_1_3_sspa?crid=K5C3JJ0ZYQHH&keywords=gps+dongle+usb&qid=1557393883&s=gateway&sprefix=GPS+dongle%2Caps%2C131&sr=8-3-spons&psc=1), GPS set up on RPI3 follows those found on this youtube vid by [KM4ACK](https://www.youtube.com/watch?v=Oag9qYuhMGg), setting the GPS up as the RPI3 clock as well. 
 
+Plotter scipts in **"AQ/AQplotter"**
+![GPSWALK](https://github.com/JarvisSan22/OPC-N3_python/blob/master/AQ/AQplotter/STATICMAP.gif)
+
 **RPI3 external clock**
 if the GPS is not attached to the [Adafruit PiRTC](https://www.amazon.co.uk/Adafruit-PiRTC-PCF8523-Raspberry-ADA3386/dp/B072DWKDW9/ref=sr_1_2?keywords=adafruit+real+time+clock&qid=1557395250&s=gateway&sr=8-2) is recommended to be attached to the RPI3 to stop the RPI3 time drifting when the internet is lost. [Setup instructions](https://www.amazon.co.uk/Adafruit-PiRTC-PCF8523-Raspberry-ADA3386/dp/B072DWKDW9/ref=sr_1_2?keywords=adafruit+real+time+clock&qid=1557395250&s=gateway&sr=8-2)
 
