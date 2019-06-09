@@ -21,6 +21,19 @@ import sys
 import codecs
 
 
+#Code to run the functions
+Sens=["OPCN3_2"]
+vals=["pm2.5", "pm10", "RH","ParticleCount","STATICMAP"]   #OPTIONS: "GPSWALK" for GPS data ,"STATICMAP" static plot map but also works with GPS data  #colums
+ave="1T" #Data avaergae for plotting 
+#Get date for today and yesterday
+today=datetime.today().strftime("%Y-%m-%d")
+yesterday=datetime.today() - timedelta(days=1)
+yesterday=yesterday.strftime("%Y-%m-%d")
+
+Dates=[yesterday,today] #defult plots today and yesterday
+filename="AQDashboard"
+#Generate PLOT
+DataFolder=""  #data folder locations !!!!!!!!!
 
 def droperror(data,col,limit,condition):
     '''
@@ -401,22 +414,7 @@ def ploter(Datas,Cols,Dates,filename,infos,ave):
     genLivedash(locname,filename,Cols)
 
 
-#Code to run the functions
-Sens=["SDS011_1"]
-#RPIs=[,"GRIMM"] #RPI3 naes 
-vals=["pm2.5","GPSWALK","STATICMAP"] #colums
-ave="1T"
-#Get date for today and yesterday
-today=datetime.today().strftime("%Y-%m-%d")
-yesterday=datetime.today() - timedelta(days=1)
-yesterday=yesterday.strftime("%Y-%m-%d")
-#yesterday="2019-05-25"
-Dates=["2019-05-24"]
-#Dates=["2019-04"]
-filename="RPI3PlotScriptstest"
-#Generate PLOT
-Folder="Dataset//Portsmouth//GPS//"
-Data,infos=GetDataset(Folder,Sens,ave)
+Data,infos=GetDataset(DataFolder,Sens,ave)
 ploter(Data,vals,Dates,filename,infos,ave)
 
 
