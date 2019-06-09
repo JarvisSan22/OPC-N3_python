@@ -121,12 +121,13 @@ This command can be added to crontab to get the sensors running on startup.
 With an plugged in SDS011, in 'variables.py' add "/dev/ttyUSB0" as the first variable in RUNPORTS and do the same for the name (i.e DSO11_1) in RUNSEN. Instead of running start.py, run 'python start-SDS.py' (for some currently unknown reason python3 does not work with the SDS, will fix soon). This will add a columns for the SDSO11s; pm2.5, pm10 and the other unkownvalue (assumed to be TSP) reading. 
 
 
+![SDSsetup](https://github.com/JarvisSan22/OPC-N3_python/blob/master/SDSsetup.jpg)
 
 # Error log:
 - 30/05/2019 Added failed attemt varaible for OPCN3 scripts. Found on Summit by Heather Guy, OPN3 was sending enoguh data using a 5m wire, by increasing the failed attemts in OPCN3_rec.py from 20 to 40 the OPC send the data. 
 
 # To do:
-- add OPCN3 live data viewer
+- add OPCN3 live databoard, working on the RPi3 
 - add functions to change default bin weighting
 - Implement new PM10, PM2.5 and PM1 calculation
 
