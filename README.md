@@ -131,3 +131,4 @@ With an plugged in SDS011, in 'variables.py' add "/dev/ttyUSB0" as the first var
 - add functions to change default bin weighting
 - Implement new PM10, PM2.5 and PM1 calculation
 
+![Case](https://github.com/JarvisSan22/OPC-N3_python/blob/master/Casesetup.jpg)
