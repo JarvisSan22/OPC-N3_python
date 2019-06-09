@@ -5,8 +5,8 @@ Contacts : ee18dj@leeds.ac.uk
 
 ### Needed imports
 1st updata
-sudo apt-get update
-sudo apt-get upgrade
+- sudo apt-get update
+- sudo apt-get upgrade
 
 2st get mpld, pandas and Scientific Python moduels
  - sudo apt-get install xsel xclip libxml2-dev libxslt-dev python-lxml python-h5py python-numexpr python-dateutil python-six python-tz python-bs4 python-html5lib python-openpyxl python-tables python-xlrd python-xlwt cython python-sqlalchemy python-xlsxwriter python-jinja2 python-boto python-gflags python-googleapi python-httplib2 python-zmq libspatialindex-dev
