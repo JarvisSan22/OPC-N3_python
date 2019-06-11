@@ -16,7 +16,7 @@ FOLDERCODE='/home/pi/OPC-N3_python/AQ/OPCscripts/' #For the scpirs locaton
 #Makse sure there are no spaces in Location name or / or ,  for this goes into ther file name
 LOC=['Location','Lat','lon'] #Add test name into this too, say aersol and calbration ...
 
-#Data record period
+#Data record period(in seconds)
 integration=10
 
 #OPCN3 attempts before reset. Number of try in to get a responce from the OPCN3, if excessed reset SPI connection 
