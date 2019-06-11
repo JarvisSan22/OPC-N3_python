@@ -18,7 +18,7 @@ LOC=['Location','Lat','lon'] #Add test name into this too, say aersol and calbra
 #Intergration names
 integration=10
 
-#OPCN3 attempts before reset . 
+#OPCN3 attempts before reset. Number of try in to get a responce from the OPCN3, if excessed reset SPI connection 
 AT=30
 #Check internet connect, URL to ping
 URL = 'https://github.com/JarvisSan22/OPC-N3_python'
