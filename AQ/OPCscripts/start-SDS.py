@@ -126,7 +126,10 @@ if __name__ == "__main__":
             datestart = datetime.date.today()
             starttime = datetime.datetime.now()
             #Create file if not alrady created
-            f = initFile(datestart,RPI,FOLDER,LOCATION,R)
+            if MODE=="GPS": #of GPS add the time in mins to the file name
+                f=initFile(startime,RPI,FOLDER,LOCATION,R)
+            else:  #file name just with date
+                f = initFile(datestart,RPI,FOLDER,LOCATION,R)
             ts = time.time()
             tnow = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')   
             data=tnow  
