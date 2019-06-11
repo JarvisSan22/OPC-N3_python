@@ -13,9 +13,10 @@ RPINAME="AQRPI8"
 FOLDER = '/home/pi/OPC-N3_python/AQ/OPCData/' #for raw data
 FOLDERCODE='/home/pi/OPC-N3_python/AQ/OPCscripts/' #For the scpirs locaton 
 #Operation location, if using with GPS use area name, add inital lat and lon
+#Makse sure there are no spaces in Location name or / or ,  for this goes into ther file name
 LOC=['Location','Lat','lon'] #Add test name into this too, say aersol and calbration ...
 
-#Intergration names
+#Data record period
 integration=10
 
 #OPCN3 attempts before reset. Number of try in to get a responce from the OPCN3, if excessed reset SPI connection 
@@ -26,7 +27,6 @@ URL = 'https://github.com/JarvisSan22/OPC-N3_python'
 
 MODE= "LOG"   #"GPS"   
 #Note if GPS is on it takes up "/dev/ttyACM0" port, so for OPNC2 and N3 use be carfull and check /dev/
-
 ##Desired sensors to run on RPI3
 OPCON="ON"
 RUNSEN=["OPCN3_8"]  #add your OPC name for OPCN3 or OPCN2)
