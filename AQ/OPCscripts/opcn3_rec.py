@@ -12,7 +12,7 @@ import struct
 import datetime
 import sys
 import os.path
-import varaibles as V
+import variables as V
 AT=V.AT
 
 wait=1e-06
