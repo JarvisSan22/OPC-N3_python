@@ -10,8 +10,8 @@ RPINAME="AQRPI8"
 #Desired operation mode
 
 #folder locations 
-FOLDER = '/home/pi/AQ/OPCData/' #for raw data
-FOLDERCODE='/home/pi/AQ/OPCscripts/' #For the scpirs locaton 
+FOLDER = '/home/pi/OPC-N3_python/AQ/OPCData/' #for raw data
+FOLDERCODE='/home/pi/OPC-N3_python/AQ/OPCscripts/' #For the scpirs locaton 
 #Operation location, if using with GPS use area name, add inital lat and lon
 LOC=['Location','Lat','lon'] #Add test name into this too, say aersol and calbration ...
 
