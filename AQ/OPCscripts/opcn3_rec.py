@@ -12,6 +12,8 @@ import struct
 import datetime
 import sys
 import os.path
+import varaibles as V
+AT=V.AT
 
 wait=1e-06
 
@@ -59,7 +61,7 @@ class Opcn3:
                         fan="OFF"
                         print("Fan off")
                         return fan
-                    elif T > 20:
+                    elif T > AT:
                         
                         print("Reset SPI")
                         time.sleep(3) #time for spi buffer to reset
@@ -90,7 +92,7 @@ class Opcn3:
                         fan="ON"
                         print("Fan On")
                         return fan
-                    elif T > 20:
+                    elif T > AT:
                         print("Reset SPI")
                         time.sleep(3) #time for spi buffer to reset
                         #reset SPI  conncetion 
@@ -119,7 +121,7 @@ class Opcn3:
                         Laz="ON"
                         print("Fan On")
                         return Laz
-                    elif T > 20:
+                    elif T > AT:
                         print("Reset SPI")
                         time.sleep(3) #time for spi buffer to reset
                         #reset SPI  conncetion 
@@ -150,7 +152,7 @@ class Opcn3:
                         Laz="Off"
                         print("Lazer Off")
                         return Laz
-                    elif T > 20:
+                    elif T > AT:
                         print("Reset SPI")
                         time.sleep(3) #time for spi buffer to reset
                         #reset SPI  conncetion 
@@ -282,7 +284,7 @@ class Opcn3:
                         check=self.combine_bytes(ans[12],ans[13])
                         print("Check=",check)
                         return([c1,c2,c3])
-                    elif T > 20:
+                    elif T > AT:
                         print("Reset SPI")
                         time.sleep(3) #time for spi buffer to reset
                         #reset SPI  conncetion 
@@ -323,7 +325,7 @@ class Opcn3:
                         #print("test=",test,'len',len(test))
                         data=self.Histdata(ans)
                         return data 
-                    if T > 20:
+                    if T > AT:
                      #   print("Reset SPI")
                         time.sleep(wait) #time for spi buffer to reset
                         #reset SPI  conncetion 
