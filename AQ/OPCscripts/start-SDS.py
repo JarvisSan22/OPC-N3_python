@@ -117,6 +117,8 @@ if __name__ == "__main__":
         print(len(Sen))
     time.sleep(4)
     points=0 #data point longer 
+  
+    starttime = datetime.datetime.now()
     while time.time() % inter != 0:
         pass
     
@@ -124,10 +126,10 @@ if __name__ == "__main__":
         while True:
             #set stars
             datestart = datetime.date.today()
-            starttime = datetime.datetime.now()
+            
             #Create file if not alrady created
-            if MODE=="GPS": #of GPS add the time in mins to the file name
-                f=initFile(startime,RPI,FOLDER,LOCATION,R)
+            if MODE=="GPS": or MODE=="TEST" #if GPS  or a TEST add the time in mins to the file name
+                f=initFile(startime.strtime('%Y%m%d-%H%M%S'),RPI,FOLDER,LOCATION,R)
             else:  #file name just with date
                 f = initFile(datestart,RPI,FOLDER,LOCATION,R)
             ts = time.time()
