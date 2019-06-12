@@ -56,6 +56,7 @@ Dashbord **"AQ/AQplotter"** ( see repository for further instructions). Dashboar
 - **/AQ**
 - **/AQ/OPCData** Directory for log data to be stored
 - **/AQ/OPCscripts** Scripts to run OPCN3, OPCN2 with options for DHT11 or DHT22 Temprature and RH sensors and GPS attachment. 
+- **/AQ/AQPlotter** Dashboard plotting scripts
 - **/AQ/teamviewer-host_14.1.18533_armhf.deb** RPI3 installer package for [teamviewer](https://www.teamviewer.com/en/buy-now/?pid=google.tv_ex_repeat.s.gb&gclid=Cj0KCQjwn8_mBRCLARIsAKxi0GJuys2-XjuxDuTIxFylKvXF4VzWCYLQhYoHMkoMawyTfyEpjDdK40YaAuQ9EALw_wcB) allowing romote over a WIFI connection. 
  
 
@@ -97,7 +98,7 @@ in OPCscripts
 
 Update the RPI3 name (RPINAME)
 
-operation location (LOC), desired MODE: "LOG" or "GPS". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile usage. 
+operation location (LOC), desired MODE: "LOG" or "GPS" or "TEST". "LOG" is for static site recording to csv, "GPS" added the lat, lon and altitude to csv allowing for mobile usage. "TEST" will create a new data file ever time "start.py" is run 
 
 RUNNING sensors (RUNSEN) (Note: multiple OPC sensors can be added)
 The connection ports (RUNPORTS), if your not sure what port it is 'cd /dev/' then unplug and replug the OPC cable
@@ -114,17 +115,22 @@ This command can be added to crontab to get the sensors running on startup.
  
 '@reboot python3 AQ/OPCscripts/start.py'
 
-![Runtest](https://github.com/JarvisSan22/OPC-N3_python/blob/master/Runexample.gif)
+
 
 ### SDS011 support
 
-With an plugged in SDS011, in 'variables.py' add "/dev/ttyUSB0" as the first variable in RUNPORTS and do the same for the name (i.e DSO11_1) in RUNSEN. Instead of running start.py, run 'python start-SDS.py' (for some currently unknown reason python3 does not work with the SDS, will fix soon). This will add a columns for the SDSO11s; pm2.5, pm10 and the other unkownvalue (assumed to be TSP) reading. 
+With an plugged in SDS011, in 'variables.py' add "/dev/ttyUSB0" as the first variable in RUNPORTS and do the same for the name (i.e DSO11_1) in RUNSEN. run 'python start.py' (for some currently unknown reason python3 does not work with the SDS, will fix soon). This will add a columns for the SDSO11s; sds-pm2.5, sds-pm10 and the other unkownvalue (assumed to be TSP) reading. 
+
 
 
 ![SDSsetup](https://github.com/JarvisSan22/OPC-N3_python/blob/master/SDSsetup.jpg)
 
+![Runtest](https://github.com/JarvisSan22/OPC-N3_python/blob/master/Runexample.gif)
+
 # Error log:
 - 30/05/2019 Added failed attemt varaible for OPCN3 scripts. Found on Summit by Heather Guy, OPN3 was sending enoguh data using a 5m wire, by increasing the failed attemts in OPCN3_rec.py from 20 to 40 the OPC send the data. 
+
+
 
 # To do:
 - add OPCN3 live databoard, working on the RPi3 
