@@ -24,8 +24,9 @@ AT=30
 #Check internet connect, URL to ping
 URL = 'https://github.com/JarvisSan22/OPC-N3_python'
 
+#LoG: logs data, new file every day #GPS add lat, long, alt to data if GPS is added #TEST create a new data file ever time scrip is run (GPS does the same as well)
 
-MODE= "LOG"   #"GPS"   
+MODE= "LOG"   #"GPS"    #TEST
 #Note if GPS is on it takes up "/dev/ttyACM0" port, so for OPNC2 and N3 use be carfull and check /dev/
 ##Desired sensors to run on RPI3
 OPCON="ON"
