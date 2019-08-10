@@ -15,7 +15,8 @@ Contacts : ee18dj@leeds.ac.uk
  - sudo pip install bottleneck rtree
  - sudo apt-get install python-numpy python-matplotlib python-mpltoolkits.basemap python-scipy python-sklearn python-statsmodels python-pandas
 
-other import for map and plots
+2rd import for map and plots
+
   -sudo pip install mpld3
   -sudo pip install folium 
  
