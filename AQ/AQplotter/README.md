@@ -16,9 +16,8 @@ Contacts : ee18dj@leeds.ac.uk
  - sudo apt-get install python-numpy python-matplotlib python-mpltoolkits.basemap python-scipy python-sklearn python-statsmodels python-pandas
 
 2rd import for map and plots
-
-  -sudo pip install mpld3
-  -sudo pip install folium 
+ - sudo pip install mpld3
+ - sudo pip install folium 
  
  # "AQDataplot.py"
  Dashboard creatuer scripts, with many options based on data varaibles and addional maps (See plot OPTIONS). Base Dashboard works for multiple sensors as long as all the data is in the same folder. To run:
