@@ -11,7 +11,7 @@ import mpld3
 import pandas as pd
 import glob 
 import numpy as np
-import AQMapfunctions as AQMap
+#import AQMapfunctions as AQMap
 import csv
 import os 
 from datetime import datetime
@@ -23,7 +23,7 @@ import codecs
 
 #Code to run the functions
 Sens=["OPCN3_2"]
-vals=["pm2.5", "pm10", "RH","ParticleCount","STATICMAP"]   #OPTIONS: "GPSWALK" for GPS data ,"STATICMAP" static plot map but also works with GPS data  #colums
+vals=["pm2.5", "pm10", "RH","ParticleCount" ,"STATICMAP"]   #OPTIONS: "GPSWALK" for GPS data ,"STATICMAP" static plot map but also works with GPS data  #colums
 ave="1T" #Data avaergae for plotting 
 #Get date for today and yesterday
 today=datetime.today().strftime("%Y-%m-%d")
