@@ -380,10 +380,15 @@ class Opcn3:
                 if data!="ERROR":
                     print(OPCNAME," Time",tnow , " PM1:", str(round(data['pm1'],2)) ,"PM2.5:", str(round(data['pm2.5'],2)) ,"PM10:", str(round(data['pm10'],2)))
                     data=str(data['Bin 0']) + ","  + str(data['Bin 1']) + ","  + str(data['Bin 2']) + ","  + str(data['Bin 3']) + ","  + str(data['Bin 4']) + ","  + str(data['Bin 5']) + ","  + str(data['Bin 6']) + ","  + str(data['Bin 7']) + ","  + str(data['Bin 8']) + ","  + str(data['Bin 9']) + ","  + str(data['Bin 10']) + ","  + str(data['Bin 11']) + ","  + str(data['Bin 12']) + ","  + str(data['Bin 13']) + ","  + str(data['Bin 14']) + ","  + str(data['Bin 15']) + ","  + str(data['Bin 16']) + "," + str(data['Bin 17']) + ","+ str(data['Bin 18']) + ","+ str(data['Bin 19']) + ","+ str(data['Bin 20']) + ","+ str(data['Bin 21']) + "," + str(data['Bin 22']) + ","+ str(data['Bin 23']) + ","+ str(data['MToF']) + ","+str(data['period']) + ","+ str(data['FlowRate']) + ","+ str(data['OPC-T']) + ","+ str(data['OPC-RH']) + ","  + str(data['pm1']) + ","  + str(data['pm2.5']) + ","  + str(data['pm10']) +"," + str(data['Check'])
-                else:
+    		    if data["period"]==0 or if data["check"]==0: #error check added 04/09/2019
+			print("OPC data measurment error at"+tnow)
+			data="nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan"+ ","  + "nan" + ","  + "nan "+ ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + "," + "nan" + ","+ "nan"+ ","+ "nan"+","+ "nan" + ","+ "nan" + "," + "nan" + ","+ "nan" + ","+ "nan" + ","+"nan" + ","+ "nan"+ ","+ "nan"+ ","+ "nan"+ ","  + "nan" + ","  + "nan" + ","  + "nan" +"," + "nan" 	
+		else:
                     print("OPC data capture error at "+tnow)
                     data="nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan"+ ","  + "nan" + ","  + "nan "+ ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + ","  + "nan" + "," + "nan" + ","+ "nan"+ ","+ "nan"+","+ "nan" + ","+ "nan" + "," + "nan" + ","+ "nan" + ","+ "nan" + ","+"nan" + ","+ "nan"+ ","+ "nan"+ ","+ "nan"+ ","  + "nan" + ","  + "nan" + ","  + "nan" +"," + "nan" 
-                return data                      
+    
+
+		return data                      
 
                
 
