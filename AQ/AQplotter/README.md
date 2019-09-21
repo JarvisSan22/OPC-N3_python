@@ -3,7 +3,7 @@
 Author : Daniel Jarvis 
 Contacts : ee18dj@leeds.ac.uk
 
-### Currenrly not working on RPI3, due to issue will Folium maps, will fix soon
+### Currenrly not working on RPI3, due to issue will Folium maps, will fix soon, but works on desktop
 
 ### Needed imports
 1st updata
