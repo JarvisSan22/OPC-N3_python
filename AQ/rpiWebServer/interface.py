@@ -4,7 +4,6 @@ import os
 import sys
 import pandas as pd
 import glob
-import codecs
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import io
@@ -34,8 +33,7 @@ def readrpi3data():
 	data = pd.DataFrame()
 	for file in todayfiles:
 	#	print(file)
-		dataloop = pd.read_csv(
-		    file, header=4, error_bad_lines=False, engine='python',index_col=False)
+		dataloop = pd.read_csv(file, header=4, error_bad_lines=False, engine='python',index_col=False)
 	
 		data = pd.concat([data, dataloop], ignore_index=False, axis=0, sort=True)
         
@@ -78,6 +76,7 @@ def sensorsmean(data,sensors):
 	  	DHTMeandata["Temp"]=data[DHTColumns[1::2]].mean(axis=1)
 	  	print(DHTMeandata.describe())
     		Meandata["DHT22"]=DHTMeandata
+		
  	if SDS>1:
 		print("There are "+ str(SDS)+"SDS011 in Data")
     		SDSMeandate=pd.DataFrame(columns=["sds-pm2.5","sds-pm10"])
@@ -114,6 +113,10 @@ def sensorsmean(data,sensors):
         	sdsdata=data[["sds-pm2.5","sds-pm10"]]
   	if "DHT22" in Meandata.keys():
         	dhtdata=Meandata["DHT22"]
+	elif "DHT22" notin Meandata.keys(): #if no DHT22 attched make error data to not cause errors in the python script
+		dhtdata=pd.DataFrame(columns=["RH","Temp"],index=data.index)
+		dhtdata["RH"]="NaN"
+		dhtdata["Temp"]="NaN"
   	else:
       		dhtdata=Meandata[["DHT-RH","DHT-T"]]
       		dhtdata.rename(columns={"DHT-RH":"RH","DHT-T":"Temp"},inplace=True)
