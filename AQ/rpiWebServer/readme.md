@@ -42,7 +42,7 @@ If you have not changed any folder names it should all work fine and come up wti
 
 Put your RPI3 ip address in a webbrowser
 
-SDS011 example, the this verstion will have PM1. PM2.5 and PM10
+SDS011 example, the this verstion will have PM1. PM2.5 and PM10. 
 
 ![RpiWeb](https://github.com/JarvisSan22/SDS-011-Python/blob/master/Screenshot_20191020-170102_Chrome.jpg)
 
