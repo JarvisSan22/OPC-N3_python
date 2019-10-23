@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+   <head>
+      <title>RPI3 OPC Sensors</title>
+      <link rel="stylesheet" href="../static/style.css/">
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+     <style>
+	body {
+	    text-align: center;
+         	background: #f0f8ff;
+	color: #484a4d;
+	padding:5%
+	}
+	#g1,
+	#g2 {
+	    width: 200px;
+	    height: 160px;
+	    display: inline-block;
+	    margin: 1em;
+	}
+   </style>
+   
+   </head>
+   
+   <body>
+   <div class="container">
+      <h2> RPI3 OPC Sensor</h2>
+      <h3>Time now: {{ time }}</h3>
+      <a href="/newdata/yes" class="button">REFRESH</a>
+      
+      
+      <hr>
+      <h3 > Sensors status {{ status }}</h3>
+      <h4>
+      <a href="/reset/yes"  class="button">Turn on / restart</a>  
+      <a href="/kill/yes" class="button">turn off </a>	
+      </h4>
+       <hr>
+      <table style="width:100%">
+      <tr>
+      <th></th>
+      <th>PM1</th>
+      <th>PM2.5</th>
+      <th>PM10</th>
+      </tr>
+       <tr style="text-align: center; vertical-align: middle;">
+       <td > Current: </td>
+	<td> {{ pm1}}  \(\mu g/m^3\)</td>
+        <td> {{ pm2 }} \(\mu g/m^3\)</td>
+        <td>{{ pm10 }} \(\mu g/m^3\)</td>
+       </tr>
+       <tr style="text-align: center; vertical-align: middle;">
+       <td > Max: </td>
+	<td> {{ Maxpm1 }}  \(\ \mu g/m^3 \)</td>
+        <td> {{ Maxpm2 }}  \(\ \mu g/m^3 \)</td>
+        <td>{{ Maxpm10 }} \(\mu g/m^3 \)</td>
+       </tr>
+       <tr style="text-align: center; vertical-align: middle;">
+       <td > Min: </td>
+	<td> {{ Minpm1 }}  \(\ \mu g/m^3 \)</td>
+        <td> {{ Minpm2 }} \( \mu g/m^3 \)</td>
+        <td>{{ Minpm10 }} \( \mu g/m^3 \)</td>
+       </tr>
+      </table>
+      
+   
+      <img src="/Plots/PM" alt="Image Placeholder" width="80%">
+      
+      
+      <div id="g1"></div>
+      <div id="g2"></div>
+       <img src="/Plots/DHT" alt="Image Placeholder 2" width="80%">
+      <hr>
+    
+ 
+      <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+	var g1, g2;
+	document.addEventListener("DOMContentLoaded", function(event) {
+	   
+    g1 = new JustGage({
+		id: "g1",
+		value: {{Temp}},
+		valueFontColor: "blue",
+		min: -10,
+		max: 50,
+		title: "Temperature",
+		label: "Celcius"
+	});
+	    g2 = new JustGage({
+		id: "g2",
+		value: {{RH}},
+		valueFontColor: "teal",
+		min: 0,
+		max: 100,
+		title: "Humidity",
+		label: "%"
+	});
+      });
+    </script>
+     
+      
+    
+      <p> @2019 Devloped by Daniel Jarvis</p>
+
+ </div>
+ </body>
+</html>
