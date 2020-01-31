@@ -1,7 +1,7 @@
 #! /usr/bin/python
 # Daniel Jarvis
 # Eddit of GPS code by Dan Mandle http://dan.mandle.me September 2012
-
+from __future__ import print_function
 import os
 from gps import *
 from time import *
@@ -31,7 +31,7 @@ def main(gpsp):
         #time.sleep(1) #set to whatever
  
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
-    print ("\nKilling Thread...")
+    print("\nKilling Thread...")
     gpsp.running = False
     gpsp.join() # wait for the thread to finish what it's doing
 
