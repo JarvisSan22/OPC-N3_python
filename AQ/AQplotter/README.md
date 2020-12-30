@@ -31,6 +31,6 @@ Contacts : ee18dj@leeds.ac.uk
  # Plot OPTIONS 
   
  ### "STATICMAP"
-![STATICMAP1](https://github.com/JarvisSan22/OPC-N3_python/blob/master/AQ/AQplotter/STATICMAP.gif)
+
  ### "GPSWALK"
  
